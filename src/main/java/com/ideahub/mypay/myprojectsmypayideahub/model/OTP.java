@@ -2,6 +2,7 @@ package com.ideahub.mypay.myprojectsmypayideahub.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class OTP {
 
     @Id
@@ -31,7 +33,6 @@ public class OTP {
     private Long otpId;
     private Integer otpValue;
     @CreationTimestamp
-//    @Generated(GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date currentTime = new java.sql.Timestamp(new java.util.Date().getTime());
 
