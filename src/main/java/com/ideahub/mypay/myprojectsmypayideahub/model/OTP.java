@@ -31,7 +31,7 @@ public class OTP {
     private Long otpId;
     private Integer otpValue;
     @CreationTimestamp
-    @Generated(GenerationTime.ALWAYS)
+//    @Generated(GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date currentTime = new java.sql.Timestamp(new java.util.Date().getTime());
 
