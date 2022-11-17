@@ -19,7 +19,7 @@ public class OTPService {
         this.userRepository = userRepository;
     }
 
-    public void createNewOTP(Long userId) {
+    public OTP createNewOTP(Long userId) {
         // native query code
 
         User user = userRepository.findUserByUserId(userId);
@@ -36,5 +36,7 @@ public class OTPService {
                 .build(); // Create the OTP instance
 
         otpRepository.save(otpNew);
+
+        return otpNew;
     }
 }

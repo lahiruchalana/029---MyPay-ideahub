@@ -1,6 +1,7 @@
 package com.ideahub.mypay.myprojectsmypayideahub.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class User {
 
     @Id
