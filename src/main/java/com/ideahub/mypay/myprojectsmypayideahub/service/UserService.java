@@ -1,5 +1,7 @@
 package com.ideahub.mypay.myprojectsmypayideahub.service;
 
+import com.ideahub.mypay.myprojectsmypayideahub.exception.DataExistingException;
+import com.ideahub.mypay.myprojectsmypayideahub.exception.InvalidInputException;
 import com.ideahub.mypay.myprojectsmypayideahub.model.OTP;
 import com.ideahub.mypay.myprojectsmypayideahub.model.User;
 import com.ideahub.mypay.myprojectsmypayideahub.repository.OTPRepository;
@@ -31,11 +33,11 @@ public class UserService {
         Optional<User> userOptionalByEmail = userRepository.getUserByEmail(email);
 
         if (userOptionalByPhoneNumber.isPresent()) {
-            throw new IllegalStateException("Existing phone number!!");
+            throw new DataExistingException("Existing phone number!!");
         }
 
         if (userOptionalByEmail.isPresent()) {
-            throw new IllegalStateException("Existing email address!!");
+            throw new DataExistingException("Existing email address!!");
         }
 
         User user = User.builder()
@@ -72,7 +74,7 @@ public class UserService {
         System.out.println(otp.getOtpValue());
 
         if (!Objects.equals(otpValue, otp.getOtpValue())) {
-            throw new IllegalStateException("OTP is not correct!!");
+            throw new InvalidInputException("OTP is not correct!!");
         }
 
         System.out.println("Phone Number and Email successfully registered");

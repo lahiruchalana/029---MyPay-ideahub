@@ -1,5 +1,6 @@
 package com.ideahub.mypay.myprojectsmypayideahub.service;
 
+import com.ideahub.mypay.myprojectsmypayideahub.exception.NoDataAvailableException;
 import com.ideahub.mypay.myprojectsmypayideahub.model.Card;
 import com.ideahub.mypay.myprojectsmypayideahub.repository.CardRepository;
 import com.ideahub.mypay.myprojectsmypayideahub.security.AESUtil;
@@ -47,7 +48,7 @@ public class CardService {
         Optional<Card> cardOptional = cardRepository.getCardByCardId(cardId);
 
         if (!cardOptional.isPresent()) {
-            throw new IllegalStateException("Card does not exist!!");
+            throw new NoDataAvailableException("Card does not exist!!");
         }
 
         System.out.println(cardOptional.get().getNumber());

@@ -1,6 +1,5 @@
 package com.ideahub.mypay.myprojectsmypayideahub.controller;
 
-import com.ideahub.mypay.myprojectsmypayideahub.model.Payment;
 import com.ideahub.mypay.myprojectsmypayideahub.service.PaymentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

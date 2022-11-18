@@ -1,5 +1,6 @@
 package com.ideahub.mypay.myprojectsmypayideahub.service;
 
+import com.ideahub.mypay.myprojectsmypayideahub.exception.NoDataAvailableException;
 import com.ideahub.mypay.myprojectsmypayideahub.model.*;
 import com.ideahub.mypay.myprojectsmypayideahub.repository.*;
 import org.springframework.mail.SimpleMailMessage;
@@ -35,7 +36,7 @@ public class PaymentService {
         Optional<Counter> counterOptional = counterRepository.getCounterByQrCodeId(qrCodeId);
 
         if (counterOptional.isEmpty()) {
-            throw new IllegalStateException("QR code is not available!!");
+            throw new NoDataAvailableException("QR code is not available!!");
         }
 
         Counter counter = counterRepository.findCounterByQrCodeId(qrCodeId);
@@ -55,7 +56,7 @@ public class PaymentService {
         Optional<Card> cardOptional = cardRepository.getCardByCardId(cardId);
 
         if (cardOptional.isEmpty()) {
-            throw new IllegalStateException("Card is not available!!");
+            throw new NoDataAvailableException("Card is not available!!");
         }
 
         Card card = cardRepository.findCardByCardId(cardId);
@@ -85,7 +86,7 @@ public class PaymentService {
         Optional<OTP> otpOptional = otpRepository.findOTPByUserUserId(payment.getUser().getUserId());
 
         if (otpOptional.isEmpty()) {
-            throw new IllegalStateException("OTP does not exist!!");
+            throw new NoDataAvailableException("OTP does not exist!!");
         }
 
         if (otpOptional.get().getOtpValue() == otpValue) {
