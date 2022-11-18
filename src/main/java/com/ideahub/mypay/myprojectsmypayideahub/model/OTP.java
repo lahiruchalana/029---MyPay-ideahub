@@ -44,4 +44,9 @@ public class OTP {
             referencedColumnName = "userId"
     )
     private User user;
+
+    public OTP(Integer otpValue, User user) {
+        this.otpValue = otpValue;
+        this.user = user;
+    }
 }

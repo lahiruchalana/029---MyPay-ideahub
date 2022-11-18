@@ -24,8 +24,8 @@ public class OTPService {
 
         User user = userRepository.findUserByUserId(userId);
 
-        OTP otp = otpRepository.getOTPByUserUserId(userId);
-        otpRepository.delete(otp);  // Delete the existing OTP of the relevant user
+//        OTP otp = otpRepository.getOTPByUserUserId(userId);
+//        otpRepository.delete(otp);  // Delete the existing OTP of the relevant user
 
         Random random = new Random();
         Integer otpValue = random.nextInt(999, 9999); // Create a random OTP
@@ -39,4 +39,5 @@ public class OTPService {
 
         return otpNew;
     }
+
 }

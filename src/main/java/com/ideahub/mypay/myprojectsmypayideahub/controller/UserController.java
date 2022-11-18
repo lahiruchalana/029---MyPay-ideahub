@@ -4,10 +4,7 @@ import com.ideahub.mypay.myprojectsmypayideahub.model.User;
 import com.ideahub.mypay.myprojectsmypayideahub.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "my-pay/api/data/users")
@@ -19,11 +16,19 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(path = "registration")
+    @PostMapping(path = "email-and-phone-number-registration")
     public ResponseEntity<?> userPhoneNumberAndEmailRegistration(
             @RequestBody User user
     ) {
         userService.userPhoneNumberAndEmailRegistration(user.getPhoneNumber(), user.getEmail());
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "phone-numbers/{phoneNumber}")
+    public ResponseEntity<?> sendOTPInPhoneNumberAndEmailRegistration(
+            @PathVariable("phoneNumber") Integer phoneNumber
+    ) {
+        userService.sendOTPInPhoneNumberAndEmailRegistration(phoneNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
