@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface CounterRepository extends JpaRepository<Counter, Long> {
 
     Optional<Counter> getCounterByQrCodeId(Integer qrCodeId);
+
+    Counter findCounterByQrCodeId(Integer qrCodeId);
 }
