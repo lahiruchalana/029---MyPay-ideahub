@@ -4,6 +4,8 @@ import com.ideahub.mypay.myprojectsmypayideahub.model.Counter;
 import com.ideahub.mypay.myprojectsmypayideahub.repository.CounterRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CounterService {
 
@@ -14,6 +16,12 @@ public class CounterService {
     }
 
     public void addNewCounter(Counter counter) {
+        Optional<Counter> counterOptional = counterRepository.getCounterByQrCodeId(counter.getQrCodeId());
+
+        if (counterOptional.isPresent()) {
+            throw new IllegalStateException("QR code Id already exist!!");
+        }
+
         counterRepository.save(counter);
     }
 }
