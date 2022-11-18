@@ -9,4 +9,7 @@ Used technologies
 * Data JPA
 * MySQL
 * Spring Security
+* Spring Mail
 * JWT
+
+## Please make sure to add SMTP username and generated password from Google Account 

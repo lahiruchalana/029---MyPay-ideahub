@@ -31,4 +31,13 @@ public class UserController {
         userService.sendOTPInPhoneNumberAndEmailRegistration(phoneNumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(path = "phone-numbers/{phoneNumber}/otps/{otpValue}")
+    public ResponseEntity<?> acceptOTPForPhoneNumberAndEmailRegistration(
+            @PathVariable("phoneNumber") Integer phoneNumber,
+            @PathVariable("otpValue") Integer otpValue
+    ) {
+        userService.acceptOTPForPhoneNumberAndEmailRegistration(otpValue, phoneNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

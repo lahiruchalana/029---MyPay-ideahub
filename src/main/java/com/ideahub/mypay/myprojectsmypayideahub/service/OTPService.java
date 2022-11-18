@@ -33,7 +33,7 @@ public class OTPService {
         }
         
         Random random = new Random();
-        Integer otpValue = random.nextInt(999, 9999); // Create a random OTP
+        Integer otpValue = random.nextInt(99999, 999999); // Create a random OTP
 
         OTP otpNew = OTP.builder()
                 .otpValue(otpValue)
