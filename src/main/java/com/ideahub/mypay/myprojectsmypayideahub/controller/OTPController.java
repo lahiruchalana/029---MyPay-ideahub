@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "my-pay/api/data/otps")
-public class OTP {
+public class OTPController {
 
     private final OTPService otpService;
 
-    public OTP(OTPService otpService) {
+    public OTPController(OTPService otpService) {
         this.otpService = otpService;
     }
 
