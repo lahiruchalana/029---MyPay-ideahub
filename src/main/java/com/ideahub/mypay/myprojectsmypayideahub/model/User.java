@@ -36,4 +36,21 @@ public class User {
     private String qSecondAnswer;
     private String qThirdAnswer;
 
+    public User(Integer phoneNumber, String email) {
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public User(String name, String nic, String qOneAnswer, String qSecondAnswer, String qThirdAnswer) {
+        this.name = name;
+        this.nic = nic;
+        this.qOneAnswer = qOneAnswer;
+        this.qSecondAnswer = qSecondAnswer;
+        this.qThirdAnswer = qThirdAnswer;
+    }
 }

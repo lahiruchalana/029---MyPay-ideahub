@@ -18,7 +18,7 @@ public class UserService {
         this.otpService = otpService;
     }
 
-    public void sendOTPForPhoneNumberAndEmailRegistration(Integer phoneNumber, String email) {
+    public void userPhoneNumberAndEmailRegistration(Integer phoneNumber, String email) {
         Optional<User> userOptionalByPhoneNumber = userRepository.getUserByPhoneNumber(phoneNumber);
         Optional<User> userOptionalByEmail = userRepository.getUserByEmail(email);
 
