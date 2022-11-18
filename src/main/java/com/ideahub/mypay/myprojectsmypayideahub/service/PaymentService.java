@@ -67,7 +67,7 @@ public class PaymentService {
 
         OTP otp = otpService.createNewOTP(payment.getUser().getUserId()); // Get OTP
 
-        // Sending OTP to Email (Used for SMS OTP) -- {}
+        // Sending OTP to Email (Used for SMS OTP)
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo("mypaymail66@gmail.com");
 
@@ -79,7 +79,19 @@ public class PaymentService {
         return payment.getPaymentId();
     }
 
-    public String confirmPayment() {
+    public String confirmPayment(Integer otpValue, Long paymentId) {
+        Payment payment = paymentRepository.getPaymentByPaymentId(paymentId);
 
+        Optional<OTP> otpOptional = otpRepository.findOTPByUserUserId(payment.getUser().getUserId());
+
+        if (otpOptional.isEmpty()) {
+            throw new IllegalStateException("OTP does not exist!!");
+        }
+
+        if (otpOptional.get().getOtpValue() == otpValue) {
+            return "Successfully made the transaction!!";
+        }
+
+        return "OTP does not correct!!";
     }
 }

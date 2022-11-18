@@ -32,4 +32,12 @@ public class PaymentController {
     ) {
         return new ResponseEntity<>(paymentService.continuePaymentCreating(cardId, amount, paymentId), HttpStatus.CREATED);
     }
+
+    @GetMapping(path = "payments/{paymentId}/otps/{otpValue}")
+    public ResponseEntity<String> confirmPayment(
+            @PathVariable("paymentId") Long paymentId,
+            @PathVariable("otpValue") Integer otpValue
+    ) {
+        return new ResponseEntity<>(paymentService.confirmPayment(otpValue, paymentId), HttpStatus.OK);
+    }
 }
