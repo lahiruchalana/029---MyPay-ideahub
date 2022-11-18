@@ -26,7 +26,7 @@ public class Card {
             generator = "card_sequence"
     )
     private Long cardId;
-    private Integer number;
+    private String number;
     private Integer pin;
     private String expDate;
 

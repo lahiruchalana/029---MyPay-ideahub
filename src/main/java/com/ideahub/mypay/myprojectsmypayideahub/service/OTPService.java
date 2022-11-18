@@ -22,7 +22,7 @@ public class OTPService {
     }
 
     public OTP createNewOTP(Long userId) {
-        // native query code
+//        otpRepository.refreshTheOTPSchema(); // Refresh expired OTPs
 
         User user = userRepository.findUserByUserId(userId);
 

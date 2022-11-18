@@ -1,39 +1,29 @@
 package com.ideahub.mypay.myprojectsmypayideahub;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.ideahub.mypay.myprojectsmypayideahub.security.AESUtil;
 
-import javax.persistence.Temporal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Random;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 public class test {
 
-    @CreationTimestamp
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateoperation = new java.sql.Timestamp(new java.util.Date().getTime());
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
 
-    Random random = new Random();
-
-    int rand = random.nextInt(999, 9999);
-
-    public Date getDateoperation() {
-        return dateoperation;
-    }
+        String input = "newPass1232";
+        SecretKey key = AESUtil.generateKey(128);
+        IvParameterSpec ivParameterSpec = AESUtil.generateIv();
+        String algorithm = "AES/CBC/PKCS5Padding";
+        String cipherText = AESUtil.encrypt(algorithm, input, key, ivParameterSpec);
+        String plainText = AESUtil.decrypt(algorithm, cipherText, key, ivParameterSpec);
 
 
-    public static void main(String[] args) {
-
-        test test = new test();
-
-        System.out.println(test.dateoperation);
-
-        System.out.println(test.rand);
-
-
-        String formatDateTime =  LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-        System.out.println("After Formatting: " + formatDateTime);
-
+        System.out.println(cipherText);
+        System.out.println(plainText);
     }
 }

@@ -77,4 +77,10 @@ public class UserService {
 
         System.out.println("Phone Number and Email successfully registered");
     }
+
+    public User getUserData(Integer phoneNumber) {
+        User user = userRepository.findUserByPhoneNumber(phoneNumber);
+
+        return user;
+    }
 }
