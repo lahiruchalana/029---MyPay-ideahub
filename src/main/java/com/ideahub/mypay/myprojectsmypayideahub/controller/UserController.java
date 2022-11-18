@@ -24,7 +24,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "phone-numbers/{phoneNumber}")
+    @GetMapping(path = "phone-numbers/{phoneNumber}/send-otp")
     public ResponseEntity<?> sendOTPInPhoneNumberAndEmailRegistration(
             @PathVariable("phoneNumber") Integer phoneNumber
     ) {

@@ -10,6 +10,8 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -33,8 +35,8 @@ public class OTP {
     private Long otpId;
     private Integer otpValue;
     @CreationTimestamp
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date currentTime = new java.sql.Timestamp(new java.util.Date().getTime());
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startTime = LocalDateTime.now();
 
     @OneToOne(
             fetch = FetchType.EAGER

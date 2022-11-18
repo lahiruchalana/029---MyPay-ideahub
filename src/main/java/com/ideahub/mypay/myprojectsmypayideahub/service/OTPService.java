@@ -6,6 +6,8 @@ import com.ideahub.mypay.myprojectsmypayideahub.repository.OTPRepository;
 import com.ideahub.mypay.myprojectsmypayideahub.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -24,9 +26,12 @@ public class OTPService {
 
         User user = userRepository.findUserByUserId(userId);
 
-//        OTP otp = otpRepository.getOTPByUserUserId(userId);
-//        otpRepository.delete(otp);  // Delete the existing OTP of the relevant user
-
+        Optional<OTP> otpOptional = otpRepository.findOTPByUserUserId(userId);
+        if (otpOptional.isPresent()) {
+            OTP otp = otpRepository.getOTPByUserUserId(userId);
+            otpRepository.delete(otp);  // Delete the existing OTP of the relevant user
+        }
+        
         Random random = new Random();
         Integer otpValue = random.nextInt(999, 9999); // Create a random OTP
 
@@ -38,6 +43,18 @@ public class OTPService {
         otpRepository.save(otpNew);
 
         return otpNew;
+    }
+
+    public OTP getOTP(Long userId) {
+        OTP otp = otpRepository.getOTPByUserUserId(userId);
+
+        return otp;
+    }
+
+    public void deleteOTP(Long otpId) {
+        OTP otp = otpRepository.getOTPByOtpId(otpId);
+
+        otpRepository.delete(otp);
     }
 
 }

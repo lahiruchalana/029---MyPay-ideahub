@@ -42,10 +42,7 @@ public class UserService {
     public void sendOTPInPhoneNumberAndEmailRegistration(Integer phoneNumber) {
         Optional<User> userOptional = userRepository.getUserByPhoneNumber(phoneNumber); // Here we get the created user for get the id of the user
 
-        System.out.println(userOptional.get().getUserId());
-
         otpService.createNewOTP(userOptional.get().getUserId()); // Get OTP
-
 
         // SMS or Email sending part
 

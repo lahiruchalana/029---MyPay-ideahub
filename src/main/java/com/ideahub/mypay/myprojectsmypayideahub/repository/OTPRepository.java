@@ -14,6 +14,8 @@ public interface OTPRepository extends JpaRepository<OTP, Long> {
 
     OTP getOTPByUserUserId(Long userId);
 
+    OTP getOTPByOtpId(Long otpId);
+
     @Query(
             value = "DELETE FROM otp_tbl WHERE current_time < (NOW() - INTERVAL 30 second)",
             nativeQuery = true
